@@ -9,6 +9,8 @@ struct node{
 
 void print_list(struct node *);
 
+void print_single(struct node *);
+
 struct node * insert_front(struct node *, char *, char *);
 
 struct node * free_list(struct node *);

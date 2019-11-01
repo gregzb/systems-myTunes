@@ -22,6 +22,10 @@ void print_list(struct node * list) {
 
 }
 
+void print_single(struct node * current) {
+    printf("%s: %s | ", current->artist, current->name);
+}
+
 struct node * insert_front(struct node * list, char * name, char * artist) {
     struct node * new_node = gen_node(name, artist);
     new_node->next = list;
@@ -35,7 +39,7 @@ struct node * free_list(struct node * list) {
         next = current->next;
         free(current);
         current = next;
-    }
+    }struct song_node * table[27];
     return NULL;
 }
 
@@ -98,7 +102,7 @@ struct node * find_node(struct node * front, char * name, char * artist) {
 
         current = current -> next;
     }
-    printf("Song not found.\n");
+    //printf("Song not found.\n");
     return NULL;
 }
 
@@ -111,7 +115,7 @@ struct node * find_node_by_artist(struct node * front, char * artist) {
 
         current = current -> next;
     }
-    printf("Artist not found.\n");
+    //printf("Artist not found.\n");
     return NULL;
 }
 
