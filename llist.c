@@ -8,6 +8,7 @@ struct node * gen_node(char * name, char * artist) {
     struct node * new_node = malloc(sizeof(struct node));
     strncpy(new_node->name, name, sizeof(new_node->name));
     strncpy(new_node->artist, artist, sizeof(new_node->artist));
+    new_node -> next = NULL;
     return new_node;
 }
 
@@ -65,21 +66,40 @@ struct node * remove_node(struct node *front, char * name, char * artist) {
 struct node * insert_ordered(struct node * front, char * name, char * artist) {
     struct node * new_node = gen_node(name, artist);
 
-    char found = 0;
-
     struct node * current = front;
+    struct node * prev = NULL;
     while (current != NULL ) {
-        if (strcmp(new_node->artist, current->artist) > 0 || strcmp(new_node->artist, current->artist) == 0 && strcmp(new_node->name, current->name) > 0) {
-            found = 1;
-            break;
+        if (strcmp(new_node->artist, current->artist) < 0 || (strcmp(new_node->artist, current->artist) == 0 && strcmp(new_node->name, current->name) <= 0)) {
+            if (prev == NULL){
+              new_node -> next = front;
+              return new_node;
+            }
+            prev -> next = new_node;
+            new_node -> next = current;
+            return front;
         }
-        current -> next;
+        prev = current;
+        current = current -> next;
     }
-    if (found)
+
+    if (prev == NULL){
+      return new_node;
+    }
+    prev -> next = new_node;
+    return front;
 }
 
 struct node * find_node(struct node * front, char * name, char * artist) {
+    struct node * current = front;
+    while (current != NULL){
+        if (strcmp(current -> artist, artist) == 0 && strcmp(current -> name, name) == 0){
+            return current;
+        }
 
+        current = current -> next;
+    }
+    printf("Song not found.\n");
+    return NULL;
 }
 
 struct node * find_node_by_artist(struct node * front, char * artist) {
