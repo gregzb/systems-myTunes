@@ -103,9 +103,25 @@ struct node * find_node(struct node * front, char * name, char * artist) {
 }
 
 struct node * find_node_by_artist(struct node * front, char * artist) {
+    struct node * current = front;
+    while (current != NULL){
+        if (strcmp(current -> artist, artist) == 0){
+            return current;
+          }
 
+        current = current -> next;
+    }
+    printf("Artist not found.\n");
+    return NULL;
 }
 
 struct node * find_random(struct node * front) {
-
+    struct node * current = front;
+    while (current -> next != NULL){
+        if (rand() % 2 == 1){
+          return current;
+        }
+        current = current -> next;
+    }
+    return current;
 }
