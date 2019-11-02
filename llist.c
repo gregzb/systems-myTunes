@@ -37,9 +37,12 @@ struct node * free_list(struct node * list) {
     struct node * next = current;
     while (current != NULL) {
         next = current->next;
+        printf("Freeing node: ");
+        print_single(current);
+        printf("\n");
         free(current);
         current = next;
-    }struct song_node * table[27];
+    }
     return NULL;
 }
 
@@ -49,7 +52,7 @@ struct node * remove_node(struct node *front, char * name, char * artist) {
     struct node * current = front;
 
     while (current != NULL) {
-        if (strcmp(current->name, name) == 0 && strcmp(current->artist, artist)) {
+        if (strcmp(current->name, name) == 0 && strcmp(current->artist, artist) == 0) {
             if (prev == NULL) {
                 struct node * temp = current->next;
                 free(current);
@@ -102,7 +105,7 @@ struct node * find_node(struct node * front, char * name, char * artist) {
 
         current = current -> next;
     }
-    //printf("Song not found.\n");
+    printf("Song not found.\n");
     return NULL;
 }
 
@@ -115,7 +118,7 @@ struct node * find_node_by_artist(struct node * front, char * artist) {
 
         current = current -> next;
     }
-    //printf("Artist not found.\n");
+    printf("Artist not found.\n");
     return NULL;
 }
 
