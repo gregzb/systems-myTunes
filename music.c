@@ -76,6 +76,6 @@ void delete_song(char * name, char * artist) {
 void clear() {
     int idx;
     for (idx = 0; idx < sizeof(table)/sizeof(table[0]); idx++) {
-        free_list(table[idx]);
+        table[idx] = free_list(table[idx]);
     }
 }

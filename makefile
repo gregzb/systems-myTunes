@@ -12,3 +12,6 @@ music.o: music.c music.h llist.h
 
 run:
 	./program
+
+memcheck:
+	valgrind --leak-check=yes ./program
