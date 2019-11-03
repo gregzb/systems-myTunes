@@ -38,7 +38,12 @@ void print_by_letter(char letter) {
 }
 
 void print_by_artist(char * artist) {
-    print_list(find_artist(artist));
+    struct node * song = find_artist(artist);
+    while (song != NULL && strcmp(song -> artist, artist) == 0){
+      print_single(song);
+      song = song -> next;
+      printf("\n");
+    }
 }
 
 void print_all() {
