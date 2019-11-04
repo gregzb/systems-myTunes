@@ -13,24 +13,24 @@ void initialize() {
 
 void add_song(char * name, char * artist) {
     int lenStr = strlen(artist);
-    int idx = lenStr > 0 ? artist[0] - 'a' : 26;
+    int idx = lenStr <= 0 || artist[0] < 'a' || artist[0] > 'z' ? 26 : artist[0] - 'a' ;
     table[idx] = insert_ordered(table[idx], name, artist);
 }
 
 struct node * find_song(char * name, char * artist) {
     int lenStr = strlen(artist);
-    int idx = lenStr > 0 ? artist[0] - 'a' : 26;
+    int idx = lenStr <= 0 || artist[0] < 'a' || artist[0] > 'z' ? 26 : artist[0] - 'a' ;
     return find_node(table[idx], name, artist);
 }
 
 struct node * find_artist(char * artist) {
     int lenStr = strlen(artist);
-    int idx = lenStr > 0 ? artist[0] - 'a' : 26;
+    int idx = lenStr <= 0 || artist[0] < 'a' || artist[0] > 'z' ? 26 : artist[0] - 'a' ;
     return find_node_by_artist(table[idx], artist);
 }
 
 void print_by_letter(char letter) {
-    int idx = letter >= 'a' ? letter - 'a' : 26;
+    int idx = letter >= 'a' && letter <= 'z' ? letter - 'a' : 26;
     if (table[idx] == NULL){
       printf("No songs with Artist of this letter\n");
     }
@@ -56,7 +56,7 @@ void print_all() {
         printf("%c: ", idx+'a');
         print_list(table[idx]);
     }
-    printf("No Arist: ");
+    printf("Misc: ");
     print_list(table[idx]);
 }
 
@@ -74,7 +74,7 @@ void shuffle() {
 
 void delete_song(char * name, char * artist) {
     int lenStr = strlen(artist);
-    int idx = lenStr > 0 ? artist[0] - 'a' : 26;
+    int idx = lenStr <= 0 || artist[0] < 'a' || artist[0] > 'z' ? 26 : artist[0] - 'a';
     table[idx] = remove_node(table[idx], name, artist);
 }
 

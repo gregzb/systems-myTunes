@@ -94,7 +94,16 @@ int main() {
     add_song("beta", "beta");
     add_song("alpha", "beta");
     add_song("beta", "alpha");
+    add_song("gamma", "abc");
+    add_song("hahaha", "boo");
+    //printf("1\n");
+    add_song("soong", "");
+    //printf("2\n");
+    //print_all();
+    add_song("world", "[hello]");
+    //printf("3\n");
     print_all();
+    //printf("4\n");
     printf("==================================\n\n");
 
     printf("Testing find_song\n");
@@ -104,6 +113,14 @@ int main() {
 
     printf("looking for [beta:beta]\n");
     tfound = find_song("beta", "beta");
+    print_list(tfound);
+
+    printf("looking for [[hello]:world]\n");
+    tfound = find_song("world", "[hello]");
+    print_list(tfound);
+
+    printf("looking for [:soong]\n");
+    tfound = find_song("soong", "");
     print_list(tfound);
 
     printf("looking for [gamma:beta]\n");
@@ -118,6 +135,10 @@ int main() {
 
     printf("Looking for songs by beta\n");
     foundArtist = find_artist("beta");
+    print_list(foundArtist);
+
+    printf("Looking for songs by [hello]\n");
+    foundArtist = find_artist("[hello]");
     print_list(foundArtist);
 
     printf("Looking for songs by artiste \n");
@@ -139,6 +160,8 @@ int main() {
     print_by_artist("alpha");
     printf("printing by beta\n");
     print_by_artist("beta");
+    printf("printing by [hello]\n");
+    print_by_artist("[hello]");
     printf("printing by c\n");
     print_by_artist("c");
     printf("==================================\n\n");
@@ -152,6 +175,8 @@ int main() {
     delete_song("alpha", "alpha");
     printf("deleting [beta:beta]\n");
     delete_song("beta", "beta");
+    printf("deleting [:soong]\n");
+    delete_song("soong", "");
     printf("deleting [notArtist:song]\n");
     delete_song("notArtist", "song");
     print_all();
